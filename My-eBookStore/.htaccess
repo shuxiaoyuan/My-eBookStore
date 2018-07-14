@@ -1,0 +1,25 @@
+
+#定义各种错误的重定向页面
+ErrorDocument 403 /index.php
+
+<IfModule mod_rewrite.c>
+
+    # -Indexes 代表禁止访问目录结构
+    Options -Indexes +FollowSymLinks +Multiviews
+
+    #开启 URL 重写
+    RewriteEngine on
+
+    #此句为重写条件：如果将要访问的是文件，则不重写
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    #此句为重写条件：如果将要访问的是目录，则不重写
+    #RewriteCond %{REQUEST_FILENAME} !-d
+
+    #此句为重写规则，详查正则表达式
+    #RewriteRule ^(.*)$ /index.php?$1 [L]
+   
+    RewriteRule ^(.*)$ /index.php [L]
+ 
+
+</IfModule>
